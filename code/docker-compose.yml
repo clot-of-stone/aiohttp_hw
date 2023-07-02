@@ -1,0 +1,41 @@
+version: "3.9"
+
+networks:
+  backend:
+
+volumes:
+  pgdata:
+
+services:
+  db:
+    container_name: postgredb
+    image: postgres:14.3-alpine3.15
+    ports:
+      - "5431:5432"
+    restart: unless-stopped
+    volumes:
+      - ./logs:/var/log
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_NAME: ${PG_NAME}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d docker_homework3"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 10s
+    networks:
+      - backend
+  aiohttp-app:
+    build: .
+    command: python app/main.py
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - backend
+    env_file:
+      - .env

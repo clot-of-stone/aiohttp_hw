@@ -1,0 +1,115 @@
+@baseUrl = http://127.0.0.1:8080
+
+# Создание пользователя
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "email": "user-1-email@somedomain.com",
+  "password": "123qwerty"
+}
+
+###
+
+# Создание пользователя c занятой почтой
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "email": "user-1-email@somedomain.com",
+  "password": "123qwerty"
+}
+
+###
+
+# Получение пользователя
+GET {{baseUrl}}/users/1
+Content-Type: application/json
+
+###
+
+# Получение несуществующего пользователя
+GET {{baseUrl}}/users/101
+Content-Type: application/json
+
+###
+
+# Создание объявления для пользователя
+POST {{baseUrl}}/ads
+Content-Type: application/json
+
+{
+  "title": "iPhone 11",
+  "description": "New, Red colour",
+  "owner_id": 1
+}
+
+###
+
+# Получение объявления
+GET {{baseUrl}}/ads/1
+Content-Type: application/json
+
+###
+
+# Получение несуществующего объявления
+GET {{baseUrl}}/ads/303
+Content-Type: application/json
+
+###
+
+# Обновление объявления
+PATCH {{baseUrl}}/ads/1
+Content-Type: application/json
+
+{
+  "description": "New, Red colour, discount 10%"
+}
+
+###
+
+# Получение обновлённого объявления
+GET {{baseUrl}}/ads/1
+Content-Type: application/json
+
+###
+
+# Удаление объявления
+DELETE {{baseUrl}}/ads/1
+Content-Type: application/json
+
+###
+
+# Получение удалённого объявления
+GET {{baseUrl}}/ads/1
+Content-Type: application/json
+
+###
+
+# Обновление пользователя
+PATCH {{baseUrl}}/users/1
+Content-Type: application/json
+
+{
+  "email": "updated-email@somedomain.com"
+}
+
+###
+
+# Получение обновлённого пользователя
+GET {{baseUrl}}/users/1
+Content-Type: application/json
+
+###
+
+# Удаление пользователя
+DELETE {{baseUrl}}/users/1
+Content-Type: application/json
+
+###
+
+# Получение удалённого пользователя
+GET {{baseUrl}}/users/1
+Content-Type: application/json
+
+###
