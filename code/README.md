@@ -16,4 +16,4 @@ source .aiohttp_venv/bin/activate
 docker-compose up
 ```
 
-4. Примеры запросов находятся в файле `requests_examples.http`
+3. Примеры запросов находятся в файле `requests_examples.http`
